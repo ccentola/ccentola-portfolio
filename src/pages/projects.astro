@@ -1,8 +1,22 @@
 ---
-import "../layouts/MainLayout.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+
+const projects = await Astro.glob("./projects/*.{md, mdx}");
 ---
 
-<MainLayout>
+<MainLayout title={"projects"}>
   <h1>Projects</h1>
+  <div>
+    {
+      projects.map((project) => {
+        return (
+          <div>
+            <a href={`${project.frontmatter.slug}`}>
+              {project.frontmatter.title}
+            </a>
+          </div>
+        );
+      })
+    }
+  </div>
 </MainLayout>
