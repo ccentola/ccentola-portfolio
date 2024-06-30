@@ -1,12 +1,15 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import H1 from "../components/H1.astro";
+import Main from "../components/Main.astro";
 
 const projects = await Astro.glob("./projects/*.{md, mdx}");
 ---
 
 <MainLayout title={"projects"}>
-  <h1>Projects</h1>
-  <div>
+  <Main>
+    <H1 text="Projects" />
+
     {
       projects.map((project) => {
         return (
@@ -18,5 +21,5 @@ const projects = await Astro.glob("./projects/*.{md, mdx}");
         );
       })
     }
-  </div>
+  </Main>
 </MainLayout>
