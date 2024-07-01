@@ -1,15 +1,13 @@
 ---
-import H1 from "../components/H1.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import Main from "../components/Main.astro";
 ---
 
 <MainLayout title={"About"}>
-  <Main>
-    <H1 text="About Me" />
+  <main class="px-24 max-sm:px-5 max-w-7xl mx-auto w-full">
+    <h1>About Me</h1>
     <p>
       My name is Carl Centola and I am a Data Engineer who messes around with a
       little mor ethan just databases and pipelines...
     </p>
-  </Main>
+  </main>
 </MainLayout>

@@ -1,12 +1,47 @@
 ---
-import H1 from "../components/H1.astro";
-import MainLayout from "../layouts/MainLayout.astro";
-import Main from "../components/Main.astro";
+import { Image, getImage } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import profilePicture from "../assets/headshot.jpg";
+
+const desktopProfilePicture = await getImage({
+  src: profilePicture,
+  width: 480,
+});
+
+const mobileProfilePicture = await getImage({
+  src: profilePicture,
+  width: 320,
+});
 ---
 
-<MainLayout title={"Carl Centola"}>
-  <Main>
-    <H1 text="Carl Centola" />
-    <p>Data Engineer</p>
-  </Main>
-</MainLayout>
+<Layout
+  description="Carl Centola's personal website. Landing page for Carl's personal and career highlights"
+  title="Carl Centola - Home"
+>
+  <section class="relative lg:pt-0 items-center flex flex-wrap h-full my-auto">
+    <div
+      class="gap-12 w-full flex flex-col lg:flex-row items-center justify-between h-full"
+    >
+      <h1
+        class="lg:text-6xl text-border-black xl:text-7xl 2xl:text-[5.25rem] flex-grow font-bold text-4xl sm:text-6xl text-center lg:text-left md:leading-[1.1] flex flex-col items-center lg:items-start"
+      >
+        <span>Carl Centola.</span>
+        <span>Data Engineer.</span>
+        <span>Tinkerer.</span>
+        <span>Father.</span>
+      </h1>
+      <div class="w-[15rem] lg:w-[20rem]">
+        <Image
+          src={profilePicture}
+          class="rounded-full mx-auto md:ml-auto lg:mr-0 aspect-square max-w-[15rem] lg:max-w-[20rem] max-h-[15rem] lg:max-h-[20rem] w-full"
+          alt="Carl Centola profile"
+          loading="eager"
+          decoding="sync"
+          widths={[360, 640, 768, 1024, 1280, 1568]}
+          sizes="(max-width: 1023px) 240px, 320px"
+          srcset={`${mobileProfilePicture.src} 240w, ${desktopProfilePicture.src}`}
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
