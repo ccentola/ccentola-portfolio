@@ -1,0 +1,44 @@
+---
+import Header from "../components/Header.astro";
+const { frontmatter, title, description } = Astro.props;
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <style>
+      @view-transition {
+        navigation: auto; /* enabled! */
+      }
+    </style>
+    <meta charset="utf-8" />
+    <title>{title ?? frontmatter?.title}</title>
+    <meta content={title ?? frontmatter?.title} property="og:title" />
+    {
+      description ? (
+        <>
+          <meta content={description} name="description" />
+          <meta content={description} property="twitter:description" />
+          <meta content={description} property="og:description" />
+          <meta name="author" content="Thomas Ledoux" />
+        </>
+      ) : (
+        <>
+          <meta
+            content="Carl is a data engineer based in Phoenix, AZ."
+            name="description"
+          />
+          <meta
+            content="Carl is a data engineer based in Phoenix, AZ"
+            property="og:description"
+          />
+        </>
+      )
+    }
+  </head>
+  <body class="flex flex-col font-body min-h-[100dvh]">
+    <Header />
+    <main class={`flex-grow flex flex-col container mx-auto h-full pt-8 pb-24`}>
+      <slot />
+    </main>
+  </body>
+</html>

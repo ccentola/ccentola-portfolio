@@ -1,7 +1,5 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import H1 from "../components/H1.astro";
-import Main from "../components/Main.astro";
 
 export async function getStaticPaths() {
   let projects = await Astro.glob("./projects/*.{md, mdx}");
@@ -18,8 +16,8 @@ const { Content, frontmatter } = Astro.props.project;
 ---
 
 <MainLayout title={frontmatter.title}>
-  <Main>
-    <H1 text={frontmatter.title} />
+  <main class="px-24 max-sm:px-5 max-w-7xl mx-auto w-full">
+    <h1>{frontmatter.title}</h1>
     <Content />
-  </Main>
+  </main>
 </MainLayout>
